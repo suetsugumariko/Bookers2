@@ -1,0 +1,21 @@
+<h1>User info</h1>
+
+<% @users.each do |user| %>
+
+  <h4>Name</h4>
+  <span>
+    <%= link_to user.name, user_path(user.id) %>
+  </span>
+
+  <h4>Image</h4>
+  <% if user.image.attachef? %>
+     <%= image_tag user.image, size:"200×200" %>
+  <% else %>
+  <% end %>
+
+  <h4>Introduction</h4>
+  <span>
+    <%= link_to user.body, user_path(user.id) %>
+  </span>
+
+<% end %>
