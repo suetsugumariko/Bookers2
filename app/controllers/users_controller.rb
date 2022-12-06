@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def login_form
+  end
+
+
+
    private
 
   def user_params
