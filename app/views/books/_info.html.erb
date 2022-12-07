@@ -1,0 +1,32 @@
+ <h2>User info</h2>
+    <table class='table'>
+      <tr>
+           <!--ユーザーの画像 -->
+      </tr>
+      <tr>
+        <th>name</th>
+        <th><%= current_user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th></th>
+      </tr>
+    </table>
+
+     <h3>New book</h3>
+    <% if @book.errors.any?%>
+    <%= @book.errors.count %>
+    <% @book.errors.full_messages.each do |message| %> errors prohibited this obj from being saved
+      <%= message %>
+      <% end %>
+    <% end %>
+
+   <%= form_with model: @book, url: '/books', method: :post do |f| %>
+   <h4>Title</h4>
+   <%= f.text_field :title %>
+   <h4>Body</h4>
+   <%= f.text_area :body %>
+   <p>
+   <%= f.submit 'Create Book' %>
+   </p>
+   <% end %>
