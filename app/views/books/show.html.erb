@@ -1,5 +1,25 @@
 <h1>Books#show</h1>
-<th>Title</th>
-<p><%= @book.title %></p>
-<th>Opinion</th>
-<p><%= @book.body %></p>
+ <%= form_with model: @books,url:'books' do |f| %>
+
+<div class='col-md-8 offset-md-1'>
+  		<h2>Book detail</h2>
+  		<table class='table'>
+  		  <tr>
+          <td><a href="/users/24">
+            <th><%= f.file_field :image, accept: "image/*" %></th>
+         </tr>
+           <th>Title</th>
+            <%= f.text_field :title %>
+           <th>Opinion</th>
+            <%= f.text_area :body %>
+
+            <td><a class="btn btn-sm btn-success edit_book_61" href="/books/61/edit">Edit</a></td>
+            <td><a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book_61" rel="nofollow" data-method="delete" href="/books/61">Destroy</a></td>
+        </tr>
+      </table>
+    </div>
+
+
+
+<%= link_to "Edit", edit_book_path(@book.id) %>
+<%= link_to "destroy", book_path(@book.id), method: :delete,"data-confirm" => "本当に消しますか？" %>

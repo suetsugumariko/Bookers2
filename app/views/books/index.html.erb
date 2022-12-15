@@ -1,12 +1,17 @@
+ <%= render 'books/info', user: @user %>
+ <%= form_with model: @books,url:'books' do |f| %>
  <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <table class='table table-hover table-inverse'>
   <thead>
     <tr>
-      <th></th>
+      <%= f.file_field :image, accept: "image/*" %>
       <th>Title</th>
+       <%= f.text_field :title %>
       <th>Opinion</th>
+       <%= f.text_area :body %>
       <th colspan="3"></th>
     </tr>
+  <% end %>
   </thead>
  </div>

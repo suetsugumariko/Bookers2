@@ -1,2 +1,28 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+
+<!--編集画面 book edit-->
+<main>
+  <%= form_with model: @books, url: update_book_path(@books.id), method: :patch do |f| %>
+        <p id="notice"></p>
+        <div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  		<h1>Editing Book</h1>
+
+
+  <div class="form-group">
+    <label for="book_title">Title</label>
+   <%= f.text_field :title%>
+  </div>
+  <div class="form-group">
+    <label for="book_opinion">Opinion</label>
+   <%= f.text_area :body %>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book" />
+  </div>
+</form>
+  		<a class="book_id" href="/books/id">Show</a> |
+  		<a class="back" href="/books">Back</a>
+  </div>
+</main>

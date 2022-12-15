@@ -1,54 +1,25 @@
- <h1>User info</h1>
-
-<% @users.each do |user| %>
-
-  <h4>Name</h4>
-  <span>
-    <%= link_to user.name, user_path(user.id) %>
-  </span>
+ <h2>User info</h2>
 
   <h4>Image</h4>
-  <% if user.image.attachef? %>
-     <%= image_tag user.image, size:"200×200" %>
-  <% else %>
-  <% end %>
+  <%= image_tag user.get_profile_image(100, 100) %>
+
+  <h4>Name</h4>
+  <%= user.name %>
 
   <h4>Introduction</h4>
-  <span>
-    <%= link_to user.body, user_path(user.id) %>
-  </span>
+  <%= user.introduction %>
 
+ <%= link_to edit_user_path(user.id), class:"btn btn-outline-secondary btn-block" do %>
+<i class="fas fa-user-cog "></i>
 <% end %>
 
-   <h2>User info</h2>
-    <table class='table'>
-      <tr>
-           <!--ユーザーの画像 -->
-        <th><%= f.file_field :image, accept: "image/*" %></th>
-        </tr>
-        <tr>
-        <th>name</th>
-        <th><%= current_user.name %></th>
-        </tr>
-        <tr>
-        <th>introduction</th>
-        <th></th>
-        </tr>
-    </table>
-
      <h3>New book</h3>
-    <% if @book.errors.any?%>
-    <%= @book.errors.count %>
-    <% @book.errors.full_messages.each do |message| %> errors prohibited this obj from being saved
-      <%= message %>
-      <% end %>
-    <% end %>
 
-   <%= form_with model: @book, url: '/books', method: :post do |f| %>
+   <%= form_with model: Book.new, url: '/books', method: :post do |f| %>
    <h4>Title</h4>
    <%= f.text_field :title %>
    <h4>Body</h4>
-   <%= f.text_area :body %>
+   <%= f.text_area :opinion %>
    <p>
    <%= f.submit 'Create Book' %>
    </p>
