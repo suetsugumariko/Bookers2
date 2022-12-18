@@ -81,7 +81,12 @@
 
 
      <main>
-     <p><%= flash[:success] %></p>
+       <div class="text-dark">
+         <%= flash[:notice] %>
+       </div>
+       <div class="text-dark">
+         <%= flash[:alret] %>
+       </div>
       <%= yield %>
 
      </main>
