@@ -1,24 +1,27 @@
-<h1>Books#show</h1>
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <div class="col-md-3">
+ <%= render 'books/info', user: @user,book: @book %>
  <%= form_with model: @books,url:'books' do |f| %>
+ <div class='col-md-8 offset-md-1'>
+      <h2>Book detail</h2>
+   <table class='table table-hover table-inverse'>
 
-<div class='col-md-8 offset-md-1'>
-  		<h2>Book detail</h2>
-  		<table class='table'>
-  		  <tr>
-          <td><a href="/users/24">
-            <th><%= f.file_field :image, accept: "image/*" %></th>
-      </tr>
-           <th>Title</th>
-            <%= f.text_field :title %>
-           <th>Opinion</th>
-            <%= f.text_area :body %>
-
-
-
-      </table>
+   <tr>
+   <td>
+   <!--<%= image_tag user.get_profile_image(100,100) %>-->
+   </td>
+   <td>
+    <%=link_to book.title, book_path(book.id) %>
+   </td>
+   <td>
+    <%=book.body %>
+   </td>
+   </tr>
+   <% end %>
+  </tbody>
+  </table>
  </div>
-
-
-
-<%= link_to "Edit", edit_book_path(@book.id) %>
-<%= link_to "destroy", book_path(@book.id), method: :delete,"data-confirm" => "本当に消しますか？" %>
+ </div>
+ </div>
+</div>
