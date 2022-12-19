@@ -27,10 +27,16 @@ class UsersController < ApplicationController
     end
  end
 
+
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+     user = User.find(params[:id])
+     user.update(user_params)
+      flash[:notice] = 'You have updated user successfully'
+      redirect_to user_path(user.id)
+
+
+
+
   end
 
   def login_form
@@ -41,7 +47,7 @@ class UsersController < ApplicationController
    private
 
   def user_params
-    params.require(:user).permit(:name, :image, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :image, :introduction)
   end
 
 end
