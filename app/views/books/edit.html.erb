@@ -1,7 +1,7 @@
 
 <!--編集画面 book edit-->
 <main>
-  <%= form_with model: @books, url: update_book_path(@books.id), method: :patch do |f| %>
+  <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
         <p id="notice"></p>
         <div class='container'>
   <div class='row'>
@@ -21,6 +21,7 @@
   <div class="form-group">
     <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book" />
   </div>
+  <% end %>
 </form>
   		<a class="book_id" href="/books/id">Show</a> |
   		<a class="back" href="/books">Back</a>
