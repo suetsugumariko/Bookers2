@@ -1,6 +1,16 @@
  <div class="container px-5 px-sm-0">
  <div class="row">
-  <div class="col-md-3">
+    <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  </div>
+  </div>
+<% end %>
+  <!--<div class="col-md-3">-->
 <!--編集画面 book edit-->
 <main>
   <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
@@ -9,6 +19,7 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h1>Editing Book</h1>
+
 
 
   <div class="form-group">
@@ -25,7 +36,8 @@
   </div>
   <% end %>
 </form>
-  		<a class="book_id" href="/books/id">Show</a> |
+  		<%= link_to "show","/books/#{@book.id}" %> |
   		<a class="back" href="/books">Back</a>
+  </div>
   </div>
 </main>

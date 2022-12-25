@@ -31,15 +31,19 @@ class UsersController < ApplicationController
 
 
   def update
-     user = User.find(params[:id])
-     user.update(user_params)
+     @user = User.find(params[:id])
+     if @user.update(user_params)
       flash[:notice] = 'You have updated user successfully'
       redirect_to user_path(user.id)
-
-
-
-
+     else
+      render :update
+     end
   end
+
+
+
+
+
 
   def login_form
   end
@@ -50,6 +54,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :image, :introduction)
+    redirect_to(user_url(current_user)) unless @user == current_user
   end
 
 end
