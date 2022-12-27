@@ -23,7 +23,7 @@ class BooksController < ApplicationController
     else
       flash[:alret] = "投稿に失敗しました"
       @books = Book.all
-
+      @user = current_user
       render "index"
     end
   end
