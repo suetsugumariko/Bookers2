@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_book, only: [:edit, :update]
+
 
   def new
   end
@@ -14,11 +14,18 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
+    @books = Book.where(user_id: @user)
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+      render :edit
+    else
+      redirect_to user_path(current_user)
+    end
   end
+
 
  def create
     @user = User.new(user_params)
@@ -57,9 +64,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
-  def correct_book
-    @user = User.find(params[:id])
-    redirect_to(users_path) unless @user == current_user
-  end
+
 
 end
